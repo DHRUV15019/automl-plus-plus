@@ -7,3 +7,5 @@ lightgbm
 pytest
 shap
 matplotlib
+fastapi
+uvicorn

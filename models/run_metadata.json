@@ -1,0 +1,15 @@
+{
+    "timestamp": "2026-07-12T23:20:15.120107",
+    "dataset": "data/titanic.csv",
+    "task_type": "binary_classification",
+    "best_params": {
+        "n_estimators": 119,
+        "learning_rate": 0.0369417370601914,
+        "num_leaves": 54,
+        "max_depth": 3,
+        "colsample_bytree": 0.8661912235934655,
+        "subsample": 0.71804991678614,
+        "scale_pos_weight": 2.9233463219662266
+    },
+    "test_metric": 0.8269433465085639
+}

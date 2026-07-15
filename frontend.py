@@ -25,7 +25,6 @@ st.divider()
 if st.button("Predict Survival 🔮", use_container_width=True):
     
     # 1. Prepare the exact data payload expected by your FastAPI backend
-    # API exactly "data" key expect kar rahi hai, toh usko wahi de
     payload = {
         "data": [
             {
@@ -48,15 +47,18 @@ if st.button("Predict Survival 🔮", use_container_width=True):
         if response.status_code == 200:
             result = response.json()
             
-            # Extracting the prediction from the JSON response
-            prediction = result.get("prediction", None)
+            # Extracting the first prediction from the list returned by the API
+            prediction_list = result.get("predictions", [])
             
-            if prediction == 1:
-                st.success("🎉 **Prediction: SURVIVED!** This passenger would likely survive.")
-            elif prediction == 0:
-                st.error("💀 **Prediction: DID NOT SURVIVE.** This passenger would likely not make it.")
+            if len(prediction_list) > 0:
+                final_pred = prediction_list[0]
+                
+                if final_pred == 1:
+                    st.success("🎉 **Prediction: SURVIVED!** This passenger would likely survive.")
+                elif final_pred == 0:
+                    st.error("💀 **Prediction: DID NOT SURVIVE.** This passenger would likely not make it.")
             else:
-                st.info(f"API Response: {result}")
+                st.info(f"API Raw Response: {result}")
         else:
             st.warning(f"Error from API (Status {response.status_code}): {response.text}")
             
